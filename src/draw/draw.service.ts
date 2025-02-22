@@ -20,7 +20,7 @@ export class DrawService {
     const ctx = canvas.getContext('2d');
 
     // โหลดพื้นหลังจาก URL
-    const backgroundURL = 'https://imagedelivery.net/QZ6TuL-3r02W7wQjQrv5DA/7d13d5b4-627a-480e-a2f2-4a62cc49e100/wlg';
+    const backgroundURL = 'https://imagedelivery.net/QZ6TuL-3r02W7wQjQrv5DA/a96ab1b1-69ac-4a1c-cf8b-1eba005fa800/wlg';
     const backgroundImage = await loadImage(backgroundURL);
     ctx.drawImage(backgroundImage, 0, 0, width, height);
 
@@ -29,64 +29,105 @@ export class DrawService {
     const avatarImage = await loadImage(avatarURL);
 
     // ขนาดและตำแหน่งของ Avatar
-    const avatarSize = 150; // กำหนดขนาด Avatar เป็น 150x150
+    const avatarSize = 220; // ขนาด Avatar
     const avatarX = width / 2 - avatarSize / 2;
     const avatarY = height / 2 - avatarSize / 2;
 
-    // คลิปเป็นวงกลม
+    // Clip เป็นวงกลม (ต้องเซฟ context ก่อน)
     ctx.save();
     ctx.beginPath();
-    ctx.arc(width / 2, height / 2, avatarSize / 2, 0, Math.PI * 2);
+    ctx.arc(width / 2, avatarY + avatarSize / 2 - 20, avatarSize / 2, 0, Math.PI * 2);
     ctx.closePath();
     ctx.clip();
 
-    // วาดรูปโปรไฟล์
-    ctx.drawImage(avatarImage, avatarX, avatarY, avatarSize, avatarSize);
-    ctx.restore(); // คืนค่าการตั้งค่า context
+    // วาดรูปโปรไฟล์ (เลื่อนขึ้น)
+    ctx.drawImage(avatarImage, avatarX, avatarY - 20, avatarSize, avatarSize);
+    ctx.restore(); // คืนค่า context
+
+    // วาดขอบเรืองแสงรอบ Avatar
+    ctx.save();
+    ctx.beginPath();
+    ctx.arc(width / 2, avatarY + avatarSize / 2 - 20, avatarSize / 2 + 1, 0, Math.PI * 2);
+    ctx.closePath();
+
+    // กำหนดเงาเรืองแสง
+    ctx.shadowColor = "rgb(0, 26, 255,0.8)"; // สีฟ้าเรืองแสง
+    ctx.shadowBlur = 5;
+    ctx.lineWidth = 3;
+    ctx.strokeStyle = "rgba(255, 255, 255, 0.8)";
+    ctx.stroke();
+    ctx.restore();
+
+    function drawNeonText(text, size, x, y, color) {
+      const blur = 4;
+      ctx.font = size + ' Sriracha';
+      ctx.textAlign = 'center';
+      ctx.shadowColor = color;
+      ctx.shadowBlur = blur;
+      ctx.fillStyle = '#ffffff';
+      ctx.fillText(text, x, y);
+    }
 
     // เพิ่มข้อความทักทาย
-    ctx.fillStyle = '#000000';
-    ctx.font = '30px Sriracha';
-    ctx.textAlign = 'center';
-    ctx.fillText('Hello MeGuild', width / 2, height - 50);
+    drawNeonText('Welcome To MeGuildOnline', `30px`, width / 2, 50, 'rgb(0, 26, 255)');
+    drawNeonText(`Me Guild Online`, `40px`, width / 2, height - 75, 'rgb(0, 26, 255)');
+    drawNeonText('ยินดีต้อนรับผู้มาเยือน', `30px`, width / 2, height - 35, 'rgb(0, 26, 255)');
 
     // Return image as Buffer
     return canvas.toBuffer('image/png');
   }
 
-  async generateImageMeGuildWelcome(data: {
-    displayName: string;
-    avatar: string;
-  }): Promise<Buffer> {
-    const width = 500;
-    const height = 500;
+  async generateImageMeGuildWelcome(data: { displayName: string; avatar: string; }): Promise<Buffer> {
+    const width = 840;
+    const height = 460;
     const canvas = createCanvas(width, height);
     const ctx = canvas.getContext('2d');
 
-    // Background color
+    // โหลดพื้นหลัง
     ctx.fillStyle = '#FFFFFF';
     ctx.fillRect(0, 0, width, height);
 
-    // Draw a rectangle
-    ctx.fillStyle = '#FF5733';
-    ctx.fillRect(50, 50, 200, 150);
+    // โหลดรูปโปรไฟล์
+    const avatarImage = await loadImage(data.avatar);
+    const avatarSize = 220;
+    const avatarX = width / 2 - avatarSize / 2;
+    const avatarY = height / 2 - avatarSize / 2;
 
-    // Draw a circle
+    // Clip เป็นวงกลม
+    ctx.save();
     ctx.beginPath();
-    ctx.arc(300, 200, 75, 0, Math.PI * 2);
-    ctx.fill();
-
-    // โหลดภาพโปรไฟล์
-    const innerImage = await loadImage(data.avatar);
-    ctx.drawImage(innerImage, 100, 100, 100, 100);
+    ctx.arc(width / 2, avatarY + avatarSize / 2 - 36, avatarSize / 2, 0, Math.PI * 2);
+    ctx.closePath();
+    ctx.clip();
+    ctx.drawImage(avatarImage, avatarX, avatarY - 36, avatarSize, avatarSize);
     ctx.restore();
 
-    // Add text with Sriracha font
-    ctx.fillStyle = '#000000';
-    ctx.font = '30px Sriracha';
-    ctx.fillText(`Hello ${data.displayName}`, 100, 400);
+    // วาดขอบเรืองแสงรอบ Avatar
+    ctx.save();
+    ctx.beginPath();
+    ctx.arc(width / 2, avatarY + avatarSize / 2 - 36, avatarSize / 2 + 1, 0, Math.PI * 2);
+    ctx.closePath();
+    ctx.shadowColor = "#78d9e3";
+    ctx.shadowBlur = 5;
+    ctx.lineWidth = 3;
+    ctx.strokeStyle = "rgba(255, 255, 255, 0.8)";
+    ctx.stroke();
+    ctx.restore();
 
-    // Return image as Buffer
+    function drawNeonText(text, size, x, y, color) {
+      const blur = 5;
+      ctx.font = size + ' Sriracha';
+      ctx.textAlign = 'center';
+      ctx.shadowColor = color;
+      ctx.shadowBlur = blur;
+      ctx.fillStyle = '#ffffff';
+      ctx.fillText(text, x, y);
+    }
+
+    drawNeonText(`Welcome To MeGuildOnline`, `30px`, width / 2, 40, '#00bed1');
+    drawNeonText(data.displayName, `50px`, width / 2, height - 80, '#00bed1');
+    drawNeonText('ยินดีต้อนรับผู้มาเยือน', `30px`, width / 2, height - 40, '#00bed1');
+
     return canvas.toBuffer('image/png');
   }
 }
