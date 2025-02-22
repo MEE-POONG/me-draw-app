@@ -1,7 +1,6 @@
 import { Controller, Get, Post, Body, Res } from '@nestjs/common';
 import { Response } from 'express';
 import { DrawService } from './draw.service';
-import { GuildMember } from 'discord.js';
 
 @Controller('draw')
 export class DrawController {
@@ -17,10 +16,10 @@ export class DrawController {
   @Post('image-me-guild-welcome')
   async getImageMeGuildWelcome(
     @Res() res: Response,
-    @Body() member: GuildMember,
+    @Body() data: { displayName: string; avatar: string },
   ) {
     const imageBuffer =
-      await this.drawService.generateImageMeGuildWelcome(member);
+      await this.drawService.generateImageMeGuildWelcome(data);
     res.setHeader('Content-Type', 'image/png');
     res.send(imageBuffer);
   }

@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { createCanvas, loadImage, registerFont } from 'canvas';
-import { GuildMember } from 'discord.js';
 import * as path from 'path';
 
 @Injectable()
@@ -43,7 +42,10 @@ export class DrawService {
     return canvas.toBuffer('image/png');
   }
 
-  async generateImageMeGuildWelcome(member: GuildMember): Promise<Buffer> {
+  async generateImageMeGuildWelcome(data: {
+    displayName: string;
+    avatar: string;
+  }): Promise<Buffer> {
     const width = 500;
     const height = 500;
     const canvas = createCanvas(width, height);
@@ -63,16 +65,14 @@ export class DrawService {
     ctx.fill();
 
     // โหลดภาพโปรไฟล์
-    const innerImage = await loadImage(
-      member.user.displayAvatarURL({ extension: 'png' }),
-    );
+    const innerImage = await loadImage(data.avatar);
     ctx.drawImage(innerImage, 100, 100, 100, 100);
     ctx.restore();
 
     // Add text with Sriracha font
     ctx.fillStyle = '#000000';
     ctx.font = '30px Sriracha';
-    ctx.fillText(`Hello ${member.user.username}`, 100, 400);
+    ctx.fillText(`Hello ${data.displayName}`, 100, 400);
 
     // Return image as Buffer
     return canvas.toBuffer('image/png');
