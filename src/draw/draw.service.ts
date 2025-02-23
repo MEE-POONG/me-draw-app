@@ -83,9 +83,10 @@ export class DrawService {
     const canvas = createCanvas(width, height);
     const ctx = canvas.getContext('2d');
 
-    // โหลดพื้นหลัง
-    ctx.fillStyle = '#FFFFFF';
-    ctx.fillRect(0, 0, width, height);
+    // โหลดพื้นหลังจาก URL
+    const backgroundURL = 'https://imagedelivery.net/QZ6TuL-3r02W7wQjQrv5DA/a96ab1b1-69ac-4a1c-cf8b-1eba005fa800/wlg';
+    const backgroundImage = await loadImage(backgroundURL);
+    ctx.drawImage(backgroundImage, 0, 0, width, height);
 
     // โหลดรูปโปรไฟล์
     const avatarImage = await loadImage(data.avatar);
