@@ -69,9 +69,9 @@ export class DrawService {
     }
 
     // เพิ่มข้อความทักทาย
-    drawNeonText('Welcome To MeGuildOnline', `30px`, width / 2, 50, 'rgb(0, 26, 255)');
-    drawNeonText(`Me Guild Online`, `40px`, width / 2, height - 75, 'rgb(0, 26, 255)');
-    drawNeonText('ยินดีต้อนรับผู้มาเยือน', `30px`, width / 2, height - 35, 'rgb(0, 26, 255)');
+    drawNeonText('Welcome To MeGuildOnline', `30px`, width / 2, 50, 'rgb(56, 36, 0)');
+    drawNeonText(`Me Guild Online`, `45px`, width / 2, height - 65, 'rgb(56, 36, 0)');
+    drawNeonText('ยินดีต้อนรับผู้มาเยือน', `30px`, width / 2, height - 25, 'rgb(56, 36, 0)');
 
     // Return image as Buffer
     return canvas.toBuffer('image/png');
@@ -125,9 +125,9 @@ export class DrawService {
       ctx.fillText(text, x, y);
     }
 
-    drawNeonText(`Welcome To MeGuildOnline`, `30px`, width / 2, 40, '#00bed1');
-    drawNeonText(data.displayName, `50px`, width / 2, height - 80, '#00bed1');
-    drawNeonText('ยินดีต้อนรับผู้มาเยือน', `30px`, width / 2, height - 40, '#00bed1');
+    drawNeonText(`Welcome To MeGuildOnline`, `30px`, width / 2, 40, 'rgb(56, 36, 0)');
+    drawNeonText(data.displayName, `50px`, width / 2, height - 75, 'rgb(56, 36, 0)');
+    drawNeonText('ยินดีต้อนรับผู้มาเยือน', `30px`, width / 2, height - 35, 'rgb(56, 36, 0)');
 
     return canvas.toBuffer('image/png');
   }
