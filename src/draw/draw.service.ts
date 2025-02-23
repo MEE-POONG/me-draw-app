@@ -58,20 +58,25 @@ export class DrawService {
     ctx.stroke();
     ctx.restore();
 
-    function drawNeonText(text, size, x, y, color) {
-      const blur = 4;
-      ctx.font = size + ' Sriracha';
+    function drawNeonText(text, size, x, y, color, inline) {
+      const blur = 5;
+      ctx.font = `${size} Sriracha`;
       ctx.textAlign = 'center';
       ctx.shadowColor = color;
       ctx.shadowBlur = blur;
       ctx.fillStyle = '#ffffff';
       ctx.fillText(text, x, y);
+      // เพิ่มเส้นรอบฟอนต์ (Stroke)
+      ctx.lineWidth = 1;
+      ctx.strokeStyle = inline;
+      ctx.strokeText(text, x, y);
     }
 
     // เพิ่มข้อความทักทาย
-    drawNeonText('Welcome Me-Guild-Online', `45px`, width / 2, 50, 'rgb(56, 36, 0)');
-    drawNeonText(`Me Guild Online`, `45px`, width / 2, height - 65, 'rgb(56, 36, 0)');
-    drawNeonText('ยินดีต้อนรับผู้มาเยือน', `30px`, width / 2, height - 25, 'rgb(56, 36, 0)');
+    drawNeonText('Welcome To', `30px`, width / 2, 30, 'rgb(161, 255, 161)', 'rgb(96, 104, 219)');
+    drawNeonText('Me Guild Online', `40px`, width / 2, 70, 'rgb(161, 255, 161)', 'rgb(96, 104, 219)');
+    drawNeonText(`Me Guild Online`, `45px`, width / 2, height - 65, 'rgb(161, 255, 161)', 'rgb(96, 104, 219)');
+    drawNeonText('ยินดีต้อนรับผู้มาเยือน', `30px`, width / 2, height - 25, 'rgb(161, 255, 161)', 'rgb(96, 104, 219)');
 
     // Return image as Buffer
     return canvas.toBuffer('image/png');
@@ -115,19 +120,24 @@ export class DrawService {
     ctx.stroke();
     ctx.restore();
 
-    function drawNeonText(text, size, x, y, color) {
+    function drawNeonText(text, size, x, y, color, inline) {
       const blur = 5;
-      ctx.font = size + ' Sriracha';
+      ctx.font = `${size} Sriracha`;
       ctx.textAlign = 'center';
       ctx.shadowColor = color;
       ctx.shadowBlur = blur;
       ctx.fillStyle = '#ffffff';
       ctx.fillText(text, x, y);
+      // เพิ่มเส้นรอบฟอนต์ (Stroke)
+      ctx.lineWidth = 1;
+      ctx.strokeStyle = inline;
+      ctx.strokeText(text, x, y);
     }
 
-    drawNeonText('Welcome Me-Guild-Online', `45px`, width / 2, 50, 'rgb(56, 36, 0)');
-    drawNeonText(data.displayName, `45px`, width / 2, height - 65, 'rgb(56, 36, 0)');
-    drawNeonText('ยินดีต้อนรับผู้มาเยือน', `30px`, width / 2, height - 25, 'rgb(56, 36, 0)');
+    drawNeonText('Welcome', `45px`, width / 2, 50, 'rgb(161, 255, 161)', 'rgb(96, 104, 219)');
+    drawNeonText('Me-Guild-Online', `50px`, width / 2, 50, 'rgb(161, 255, 161)', 'rgb(96, 104, 219)');
+    drawNeonText(data.displayName, `45px`, width / 2, height - 65, 'rgb(161, 255, 161)', 'rgb(96, 104, 219)');
+    drawNeonText('ยินดีต้อนรับผู้มาเยือน', `30px`, width / 2, height - 25, 'rgb(161, 255, 161)', 'rgb(96, 104, 219)');
 
     return canvas.toBuffer('image/png');
   }
