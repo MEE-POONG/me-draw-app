@@ -69,7 +69,7 @@ export class DrawService {
     }
 
     // เพิ่มข้อความทักทาย
-    drawNeonText('Welcome To MeGuildOnline', `30px`, width / 2, 50, 'rgb(56, 36, 0)');
+    drawNeonText('Welcome Me-Guild-Online', `45px`, width / 2, 50, 'rgb(56, 36, 0)');
     drawNeonText(`Me Guild Online`, `45px`, width / 2, height - 65, 'rgb(56, 36, 0)');
     drawNeonText('ยินดีต้อนรับผู้มาเยือน', `30px`, width / 2, height - 25, 'rgb(56, 36, 0)');
 
