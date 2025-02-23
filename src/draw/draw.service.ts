@@ -20,7 +20,7 @@ export class DrawService {
     const ctx = canvas.getContext('2d');
 
     // โหลดพื้นหลังจาก URL
-    const backgroundURL = 'https://imagedelivery.net/QZ6TuL-3r02W7wQjQrv5DA/a96ab1b1-69ac-4a1c-cf8b-1eba005fa800/wlg';
+    const backgroundURL = 'https://imagedelivery.net/QZ6TuL-3r02W7wQjQrv5DA/49cf9f2a-5195-404f-bf43-dfbf75623a00/wlg';
     const backgroundImage = await loadImage(backgroundURL);
     ctx.drawImage(backgroundImage, 0, 0, width, height);
 
@@ -84,7 +84,7 @@ export class DrawService {
     const ctx = canvas.getContext('2d');
 
     // โหลดพื้นหลังจาก URL
-    const backgroundURL = 'https://imagedelivery.net/QZ6TuL-3r02W7wQjQrv5DA/a96ab1b1-69ac-4a1c-cf8b-1eba005fa800/wlg';
+    const backgroundURL = 'https://imagedelivery.net/QZ6TuL-3r02W7wQjQrv5DA/49cf9f2a-5195-404f-bf43-dfbf75623a00/wlg';
     const backgroundImage = await loadImage(backgroundURL);
     ctx.drawImage(backgroundImage, 0, 0, width, height);
 
