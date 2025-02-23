@@ -97,16 +97,16 @@ export class DrawService {
     // Clip เป็นวงกลม
     ctx.save();
     ctx.beginPath();
-    ctx.arc(width / 2, avatarY + avatarSize / 2 - 36, avatarSize / 2, 0, Math.PI * 2);
+    ctx.arc(width / 2, avatarY + avatarSize / 2 - 20, avatarSize / 2, 0, Math.PI * 2);
     ctx.closePath();
     ctx.clip();
-    ctx.drawImage(avatarImage, avatarX, avatarY - 36, avatarSize, avatarSize);
+    ctx.drawImage(avatarImage, avatarX, avatarY - 20, avatarSize, avatarSize);
     ctx.restore();
 
     // วาดขอบเรืองแสงรอบ Avatar
     ctx.save();
     ctx.beginPath();
-    ctx.arc(width / 2, avatarY + avatarSize / 2 - 36, avatarSize / 2 + 1, 0, Math.PI * 2);
+    ctx.arc(width / 2, avatarY + avatarSize / 2 - 20, avatarSize / 2 + 1, 0, Math.PI * 2);
     ctx.closePath();
     ctx.shadowColor = "#78d9e3";
     ctx.shadowBlur = 5;
