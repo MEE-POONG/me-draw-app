@@ -134,7 +134,7 @@ export class DrawService {
       ctx.strokeText(text, x, y);
     }
 
-    drawNeonText('Welcome', `45px`, width / 2, 50, 'rgb(161, 255, 161)', 'rgb(96, 104, 219)');
+    // drawNeonText('Welcome', `45px`, width / 2, 50, 'rgb(161, 255, 161)', 'rgb(96, 104, 219)');
     drawNeonText('Me-Guild-Online', `50px`, width / 2, 50, 'rgb(161, 255, 161)', 'rgb(96, 104, 219)');
     drawNeonText(data.displayName, `45px`, width / 2, height - 65, 'rgb(161, 255, 161)', 'rgb(96, 104, 219)');
     drawNeonText('ยินดีต้อนรับผู้มาเยือน', `30px`, width / 2, height - 25, 'rgb(161, 255, 161)', 'rgb(96, 104, 219)');
