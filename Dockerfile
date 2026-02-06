@@ -23,8 +23,11 @@ RUN npm install
 # Copy the entire project to the container
 COPY . .
 
+# Build the application for production
+RUN npm run build
+
 # Expose port 3000 for the NestJS application
 EXPOSE 3000
 
-# Start the application
-CMD ["npm", "run", "start"]
+# Start the application in production mode
+CMD ["npm", "run", "start:prod"]
